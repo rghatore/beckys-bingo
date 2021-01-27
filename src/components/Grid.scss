@@ -1,0 +1,23 @@
+.grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  table {
+    border-collapse: collapse;
+    border: 1px solid black;
+
+    td {
+      border: 1px solid black;
+      padding: 10px;
+      height: 75px;
+      width: 75px;
+    }
+
+    .free {
+      background-color: #93C193;
+    }
+
+  }
+
+}
