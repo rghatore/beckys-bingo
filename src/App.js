@@ -2,6 +2,7 @@ import './App.scss';
 import { Grid } from './components/Grid';
 import { Header } from './components/Header';
 import { Navbar } from './components/Navbar';
+import Message from './components/Message';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Navbar />
       <main>
         <Grid />
+        <Message />
       </main>
     </div>
   );

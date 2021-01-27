@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 0 0 10px black;
 
   table {
     border-collapse: collapse;
@@ -16,6 +17,8 @@
 
     .free {
       background-color: #93C193;
+      height: 40px;
+      width: 40px;
     }
 
   }
