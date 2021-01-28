@@ -5,33 +5,51 @@ import { Navbar } from './components/Navbar';
 import Message from './components/Message';
 import Papa from 'papaparse';
 import { useEffect, useState } from 'react';
+import { shuffle } from './helpers/selectors';
 
 
 function App() {
-  // const sheet = 'https://docs.google.com/spreadsheets/d/12qeZwDvfv8vykr4GY6l7dX4oIBTQI-Py_hVbwuzzxHc/edit?usp=sharing';
+
+  const [state, setState] = useState({
+    categories: [],
+    items: []
+  });
   const sheetUrl = 'https://docs.google.com/spreadsheets/d/12qeZwDvfv8vykr4GY6l7dX4oIBTQI-Py_hVbwuzzxHc/pub?output=csv';
   
   useEffect(() => {
-    // Papa.parse('https://docs.google.com/spreadsheets/d/e/2PACX-1vRB4E_6RnpLP1wWMjqcwsUvotNATB8Np3OntlXb7066ULcAHI9oqqRhucltFifPTYNd7DRNRE56oTdt/pub?output=csv', {
     Papa.parse(sheetUrl, {
       download: true,
       header: true,
       complete: function(results) {
+        // error handline to be implemented
+        // storing categories in state
+        let categories = results.meta.fields;
+        setState(prev => ({...prev, categories }))
+        // shuffle and update items in state
         let data = results.data;
-        let keys = results.meta.fields;
-        // console.log(results)
-        console.log(keys)
-        // console.log(data[0])
+        shuffle(data);
+        // console.log(results
+        // console.log(data)
+        // loop and update items in state
+        const items = [[], [], []];
+        data.forEach((item) => {
+          items[0].push(item[categories[0]]);
+          items[1].push(item[categories[1]]);
+          items[2].push(item[categories[2]]);
+        })
+        // console.log(items);
+        // update state
+        setState(prev => ({...prev, items}));
       }
     });
-  })
+  }, []);
 
   return (
     <div className="App">
       <Header />
-      <Navbar />
+      <Navbar categories={state.categories}/>
       <main>
-        <Grid />
+        <Grid items={state.items}/>
         <Message />
       </main>
     </div>

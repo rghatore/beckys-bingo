@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
 
-export function Navbar () {
-  const [value, setValue] = useState("lullabies")
-
+export function Navbar (props) {
+  const [value, setValue] = useState("firstCategory")
+  const { categories } = props;
 
   return (
     <nav className="categories">
@@ -14,9 +14,9 @@ export function Navbar () {
         value={value}
         onChange={(event) => setValue(event.target.value)}
       >
-        <option value="lullabies">Lullabies</option>
-        <option value="stories">Stories</option>
-        <option value="games">Games</option>
+        <option value="firstCategory">{categories && categories[0]}</option>
+        <option value="secondCategory">{categories && categories[1]}</option>
+        <option value="thirdCategory">{categories && categories[2]}</option>
       </select>
     </nav>
   )
