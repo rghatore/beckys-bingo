@@ -5,7 +5,7 @@ import { Navbar } from './components/Navbar';
 import Message from './components/Message';
 import Papa from 'papaparse';
 import { useEffect, useState } from 'react';
-import { shuffle } from './helpers/selectors';
+// import { shuffle } from './helpers/selectors';
 
 
 function App() {

@@ -3,4 +3,4 @@ export function shuffle (items) {
     const j = Math.floor(Math.random() * (i + 1));
     [items[i], items[j]] = [items[j], items[i]];
   }
-}
+};
