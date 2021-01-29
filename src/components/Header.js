@@ -1,11 +1,9 @@
 export function Header () {
   return (
     <header className="header">
-      <img src="logo192.png" alt="logo-left"/>
+      <img id="bear" src="Bear.png" alt="logo-bear"/>
       <h1 className="title">Becky's Bingo</h1>
-      <img src="logo192.png" alt="logo-left"/>
+      <img id="deer" src="Deer.png" alt="logo-deer"/>
     </header>
   )  
 }
-
-// export default Header;

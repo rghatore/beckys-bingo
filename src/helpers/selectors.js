@@ -5,12 +5,11 @@ export function shuffle(items) {
   }
 };
 
+// clear all selected cells
 export function clearSelected() {
   const allTags = document.querySelectorAll('td');
-  // console.log('working ...', allTags);
   allTags && allTags.forEach(item => {
     item.classList.remove('selected')
-    // console.log('looping: ', item);
     if(item.innerHTML === 'FREE') {
       item.classList.add('selected');
     }
@@ -53,6 +52,5 @@ export function maxNumber() {
   max = findMax('eleventh', max);
   max = findMax('twelfth', max);
 
-  // console.log('max: ', max);
   return max;
 }

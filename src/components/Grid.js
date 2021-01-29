@@ -1,27 +1,19 @@
 import './Grid.scss'
-import { clearSelected, maxNumber, shuffle } from '../helpers/selectors';
-import { useEffect, useState } from 'react';
+import { maxNumber } from '../helpers/selectors';
 
 export function Grid (props) {
+  console.log('refreshing grid');
+  const { current, items, updateCount } = props;
 
-  const { current, items } = props;
   let bingoItems = [];
 
   if (current === 'firstCategory' && items[0]) {
-    shuffle(items[0]);
     bingoItems = items[0];
   } else if (current === 'secondCategory' && items[1]) {
-    shuffle(items[1]);
     bingoItems = items[1];
   } else if (current === 'thirdCategory' && items[2]) {
-    shuffle(items[2])
     bingoItems = items[2];
   }
-
-  useEffect(() => {
-    console.log('Clearing...')
-    clearSelected();
-  },[current])
 
   // add class to cell on click
   const selectCell = (event) => {
@@ -35,11 +27,9 @@ export function Grid (props) {
     }
     //  get max number count
     const count = maxNumber();
-    
-
+    updateCount(count);
   }
 
-  // currently, FREE cells are random - might change to fixed position
   return (
     <section className="grid">
       <table>

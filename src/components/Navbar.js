@@ -5,11 +5,6 @@ export function Navbar (props) {
   const [value, setValue] = useState("firstCategory")
   const { categories, changeCategory } = props;
 
-  // const change = (event) => {
-    // setValue(event.target.value);
-    // changeCategory(value);
-  // }
-
   useEffect(() => {
     changeCategory(value);
   }, [value])
@@ -21,7 +16,6 @@ export function Navbar (props) {
         name="category"
         id="bingo-category"
         value={value}
-        // onChange={(event) => change(event)}
         onChange={(event) => setValue(event.target.value)}
       >
         <option value="firstCategory">{categories && categories[0]}</option>
