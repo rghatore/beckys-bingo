@@ -1,0 +1,61 @@
+.status_popup {
+  position:fixed;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+
+  .status_position {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 2;
+  }
+
+  .status_content {
+    background-color: #000;
+    height: 100px;
+    width: 71%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: 0 0 5px black;
+  }
+
+  h1 {
+    color: khaki;
+    padding-right: 2em;
+  }
+
+  #status {
+    animation: rotate linear 1s infinite;
+    -webkit-animation: rotate linear 1s infinite;
+    -moz-animation: rotate linear 1s infinite;
+    -o-animation: rotate linear 1s infinite;
+    -ms-animation: rotate linear 1s infinite;
+  }
+
+  // rotate status
+  @keyframes rotate {
+    100% {transform: rotate(360deg);}
+  }
+
+  @-moz-keyframes rotate {
+    100% {transform: rotate(360deg);}
+  }
+
+  @-webkit-keyframes rotate {
+    100% {transform: rotate(360deg);}
+  }
+
+  @-o-keyframes rotate {
+    100% {transform: rotate(360deg);}
+  }
+
+  @-ms-keyframes rotate {
+    100% {transform: rotate(360deg);}
+  }
+
+}

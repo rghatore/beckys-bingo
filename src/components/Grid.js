@@ -2,7 +2,6 @@ import './Grid.scss'
 import { maxNumber } from '../helpers/selectors';
 
 export function Grid (props) {
-  console.log('refreshing grid');
   const { current, items, updateCount } = props;
 
   let bingoItems = [];

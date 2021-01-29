@@ -4,6 +4,7 @@ import { Header } from './components/Header';
 import { Navbar } from './components/Navbar';
 import Message from './components/Message';
 import Bingo from './components/Bingo';
+import Status from './components/Status';
 import Papa from 'papaparse';
 import { useEffect, useState } from 'react';
 import { shuffle, clearSelected } from './helpers/selectors';
@@ -16,7 +17,8 @@ function App() {
     current: "firstCategory",
     items: [],
     count: 0,
-    bingo: false
+    bingo: false,
+    loading: true
   });
   const sheetUrl = 'https://docs.google.com/spreadsheets/d/12qeZwDvfv8vykr4GY6l7dX4oIBTQI-Py_hVbwuzzxHc/pub?output=csv';
   
@@ -40,7 +42,7 @@ function App() {
           items[2].push(item[categories[2]]);
         })
         // update state
-        setState(prev => ({...prev, items}));
+        setState(prev => ({...prev, items, loading: false}));
       }
     });
   }, []);
@@ -80,6 +82,9 @@ function App() {
 
   return (
     <div className="App">
+      <Status
+        loading={state.loading}
+      />
       <Bingo
         bingo={state.bingo}
         reset={reset}
