@@ -12,6 +12,7 @@ function App() {
 
   const [state, setState] = useState({
     categories: [],
+    current: "firstCategory",
     items: []
   });
   const sheetUrl = 'https://docs.google.com/spreadsheets/d/12qeZwDvfv8vykr4GY6l7dX4oIBTQI-Py_hVbwuzzxHc/pub?output=csv';
@@ -27,7 +28,7 @@ function App() {
         setState(prev => ({...prev, categories }))
         // shuffle and update items in state
         let data = results.data;
-        shuffle(data);
+        // shuffle(data);
         // console.log(results
         // console.log(data)
         // loop and update items in state
@@ -44,12 +45,16 @@ function App() {
     });
   }, []);
 
+  const changeCategory = (category) => {
+    setState(prev => ({...prev, current: category}))
+  };
+
   return (
     <div className="App">
       <Header />
-      <Navbar categories={state.categories}/>
+      <Navbar categories={state.categories} changeCategory={changeCategory}/>
       <main>
-        <Grid items={state.items}/>
+        <Grid items={state.items} current={state.current}/>
         <Message />
       </main>
     </div>
