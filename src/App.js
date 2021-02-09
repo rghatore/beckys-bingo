@@ -20,7 +20,8 @@ function App() {
     bingo: false,
     loading: true
   });
-  const sheetUrl = 'https://docs.google.com/spreadsheets/d/12qeZwDvfv8vykr4GY6l7dX4oIBTQI-Py_hVbwuzzxHc/pub?output=csv';
+  
+  const sheetUrl = 'https://docs.google.com/spreadsheets/d/1_Vm4nx1KFpSAta-3gc5RhsyP8rrdg3YhAXNA5tTHyg4/pub?output=csv';
   
   useEffect(() => {
     Papa.parse(sheetUrl, {
