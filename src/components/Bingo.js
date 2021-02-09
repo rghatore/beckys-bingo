@@ -10,7 +10,7 @@ export default function Bingo (props) {
       <div className="modal_position">
         <span className="modal_content">
           <h1>Bingo!</h1>
-          <img id="raccoon" src="Raccoon.png" alt="raccoon"/>
+          <img id="image_bingo" src="images/kallen/Mario_bingo.png" alt="mario"/>
         </span>
       </div>
     </div>

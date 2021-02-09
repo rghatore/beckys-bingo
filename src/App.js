@@ -48,7 +48,7 @@ function App() {
           ...prev,
           items,
           loading: false,
-          message: "Have fun playing Kallen's Bingo!"
+          message: "All the best! Have fun!"
         }));
 
       }
@@ -70,7 +70,7 @@ function App() {
     setState(prev => ({
       ...prev,
       count: maxNumber(),
-      message: "Have fun playing Kallen's Bingo!"
+      message: "All the best! Have fun!"
     }));
     clearSelected();
   }, [state.current])

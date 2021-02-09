@@ -15,12 +15,12 @@
       text-shadow: 0 0 5px rgba(0, 0, 0, 1);
     }
 
-    #bear {
-      height: 50px;
+    #logo-left {
+      height: 75px;
     }
 
-    #deer {
-      width: 50px;
+    #logo-right {
+      height: 75px;
     }
 
   }
@@ -55,7 +55,9 @@
       border: 1px solid black;
       border-radius: 10px;
       width: 300px;
-      background-color: khaki;
+      background-color: #3F88C5;
+      color: white;
+      text-shadow: 0 0 5px black;
     }
 
   }
