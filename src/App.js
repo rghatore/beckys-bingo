@@ -7,7 +7,7 @@ import Bingo from './components/Bingo';
 import Status from './components/Status';
 import Papa from 'papaparse';
 import { useEffect, useState } from 'react';
-import { shuffle, clearSelected } from './helpers/selectors';
+import { shuffle, clearSelected, maxNumber } from './helpers/selectors';
 
 
 function App() {
@@ -18,7 +18,8 @@ function App() {
     items: [],
     count: 0,
     bingo: false,
-    loading: true
+    loading: true,
+    message: ""
   });
   
   const sheetUrl = 'https://docs.google.com/spreadsheets/d/1_Vm4nx1KFpSAta-3gc5RhsyP8rrdg3YhAXNA5tTHyg4/pub?output=csv';
@@ -43,7 +44,13 @@ function App() {
           items[2].push(item[categories[2]]);
         })
         // update state
-        setState(prev => ({...prev, items, loading: false}));
+        setState(prev => ({
+          ...prev,
+          items,
+          loading: false,
+          message: "Have fun playing Kallen's Bingo!"
+        }));
+
       }
     });
   }, []);
@@ -60,8 +67,11 @@ function App() {
       state.items.length > 0 && shuffle(state.items[0]);
       state.items.length > 0 && shuffle(state.items[1]);
     }
-
-    setState(prev => ({...prev, count: 0}));
+    setState(prev => ({
+      ...prev,
+      count: maxNumber(),
+      message: "Have fun playing Kallen's Bingo!"
+    }));
     clearSelected();
   }, [state.current])
 
@@ -70,11 +80,18 @@ function App() {
     setState(prev => ({...prev, current: category}));
   };
 
-  const updateCount = (num) => {
-    setState(prev => ({...prev, count: num}));
-    if (num === 5) {
-      setState(prev => ({...prev, bingo: true}));
-    }
+  const updateCount = () => {
+    let num = maxNumber();
+    num !== 5 && setState(prev => ({
+      ...prev,
+      count: num,
+      message: `${5 - num} away from Bingo!`
+    }));
+    num === 5 && setState(prev => ({
+      ...prev,
+      bingo: true,
+      message: 'Yay! You are the winner!'
+    }));
   };
 
   const reset = () => {
@@ -102,6 +119,7 @@ function App() {
           updateCount={updateCount}
         />
         <Message
+          message={state.message}
           count={state.count}
         />
       </main>

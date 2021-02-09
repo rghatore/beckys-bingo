@@ -1,5 +1,4 @@
 import './Grid.scss'
-import { maxNumber } from '../helpers/selectors';
 
 export function Grid (props) {
   const { current, items, updateCount } = props;
@@ -25,8 +24,9 @@ export function Grid (props) {
       target.classList.add('selected');
     }
     //  get max number count
-    const count = maxNumber();
-    updateCount(count);
+    // const count = maxNumber();
+    // updateCount(count);
+    updateCount();
   }
 
   return (
