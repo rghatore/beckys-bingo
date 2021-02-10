@@ -26,24 +26,32 @@
   }
 
   // Navbar CSS
-  .categories {
+  .nav_bar {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 1em;
+    justify-content: space-evenly;
 
-    label {
-      margin: 0.5em 0;
+    .categories {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 1em;
+
+      label {
+        margin: 0.5em 0;
+      }
+
+      #bingo-category {
+        font-size: medium;
+        padding: 2px;
+        border-radius: 2px;
+      }
     }
 
-    #bingo-category {
-      font-size: medium;
-      padding: 2px;
-      border-radius: 2px;
+    p {
+      margin-block-start: 0.5em;
+      margin-block-end: 0.5em;
     }
-
   }
-
   // Message CSS
   main {
     display: flex;
