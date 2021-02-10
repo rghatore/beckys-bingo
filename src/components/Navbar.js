@@ -4,17 +4,25 @@ import Button from './Button';
 export function Navbar (props) {
   const [value, setValue] = useState("firstCategory")
   // const [items, setItems] = useState(props.items || []);
-  const { categories, changeCategory } = props;
+  const { categories, changeCategory, itemsBag, history } = props;
+
+  // console.log('itemsBag: ', itemsBag);
 
   useEffect(() => {
     changeCategory(value);
   }, [value])
 
+  const pickOne = () => {
+    console.log('itemsBag: ', itemsBag);
+    const bag = [...itemsBag];
+    props.nextItem(bag);
+  }
+
   return (
     <nav className="nav_bar">
       <div>
-        <p>Current: </p>
-        <Button next>Next item</Button>
+        <p>Current: <b>{history.length > 0 && history[history.length - 1]}</b></p>
+        <Button next onClick={() => pickOne()}>Next item</Button>
       </div>
       <div className="categories">
         <label for="bingo-category">Select a category:</label>

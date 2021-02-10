@@ -19,7 +19,9 @@ function App() {
     count: 0,
     bingo: false,
     loading: true,
-    message: ""
+    message: "",
+    itemsBag: [],
+    history: []
   });
   
   const sheetUrl = 'https://docs.google.com/spreadsheets/d/1_Vm4nx1KFpSAta-3gc5RhsyP8rrdg3YhAXNA5tTHyg4/pub?output=csv';
@@ -44,17 +46,24 @@ function App() {
           items[2].push(item[categories[2]]);
         })
         // update state
+        console.log('items: ', items);
+        const bag = [...items[0]];
+        shuffle(bag);
+        console.log('bag: ', bag);
+
         setState(prev => ({
           ...prev,
           items,
           loading: false,
-          message: "All the best! Have fun!"
+          message: "All the best! Have fun!",
+          itemsBag: bag
         }));
 
       }
     });
   }, []);
 
+  /*
   useEffect(() => {
     if (state.current === 'firstCategory') {
       state.items.length > 0 && shuffle(state.items[1]);
@@ -74,10 +83,39 @@ function App() {
     }));
     clearSelected();
   }, [state.current])
-
+  */
 
   const changeCategory = (category) => {
-    setState(prev => ({...prev, current: category}));
+    let bag = [];
+
+    if (state.current === 'firstCategory') {
+      state.items.length > 0 && shuffle(state.items[1]);
+      state.items.length > 0 && shuffle(state.items[2]);
+    } else if (state.current === 'secondCategory') {
+      state.items.length > 0 && shuffle(state.items[0]);
+      state.items.length > 0 && shuffle(state.items[2]);
+    } else if (state.current === 'thirdCategory') {
+      state.items.length > 0 && shuffle(state.items[0]);
+      state.items.length > 0 && shuffle(state.items[1]);
+    }
+
+    category === 'firstCategory' && state.items[0] && (bag = [...state.items[0]]);
+    category === 'secondCategory' && state.items[1] && (bag = [...state.items[1]]);
+    category === 'thirdCategory' && state.items[2] && (bag = [...state.items[2]]);
+
+    console.log('current is: ', category);
+    console.log('bag is: ', bag);
+
+    setState(prev => ({
+      ...prev,
+      count: maxNumber(),
+      message: "All the best! Have fun!",
+      current: category,
+      itemsBag: bag,
+      history: []
+    }));
+    clearSelected();
+    // setState(prev => ({...prev, current: category}));
   };
 
   const updateCount = () => {
@@ -98,6 +136,17 @@ function App() {
     setState(prev => ({...prev, bingo: false}));
   }
 
+  const nextItem = (currentBag) => {
+    currentBag.length > 0 && shuffle(currentBag);
+    const grab = currentBag.pop();
+    console.log('grab: ', grab);
+    const history = [...state.history];
+    history.push(grab);
+    // const grab = currentBag
+    setState(prev => ({...prev, history, itemsBag: currentBag}));
+  }
+
+
   return (
     <div className="App">
       <Status
@@ -111,6 +160,10 @@ function App() {
       <Navbar
         categories={state.categories}
         changeCategory={changeCategory}
+        itemsBag={state.itemsBag}
+        nextItem={nextItem}
+        history={state.history}
+        // current={state.current}
       />
       <main>
         <Grid
