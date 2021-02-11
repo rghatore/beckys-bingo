@@ -17,15 +17,11 @@ export function Grid (props) {
   const selectCell = (event) => {
     const target = event.target;
     if ([...target.classList].includes('selected')) {
-      // target.className = '';
       target.classList.remove('selected');
     } else {
-      // target.className = 'selected';
       target.classList.add('selected');
     }
-    //  get max number count
-    // const count = maxNumber();
-    // updateCount(count);
+
     updateCount();
   }
 

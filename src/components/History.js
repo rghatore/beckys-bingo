@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import './History.scss';
 
 export default function History(props) {
-  const { history, showHistory, displayHistory } = props
+  const [show, setShow] = useState(true);
+  
+  const { history, displayHistory } = props
 
   let columns = [
     history.slice(0,5),
@@ -11,9 +14,15 @@ export default function History(props) {
     history.slice(20)
   ];
 
+  const toggle = () => {
+    setShow(false);
+    setTimeout(() => {
+      displayHistory();
+    }, 1800)
+  } 
+
   return (
-    // showHistory && 
-    <div className={`history_slide ${showHistory ? 'open' : 'close'}`}>
+    <div className={`history_slide ${show ? 'open' : 'close'}`}>
       <section className="history_content">
         {
           history.length === 0 && 
@@ -55,7 +64,7 @@ export default function History(props) {
           </>
         }
       </section>
-      <div className="hide" onClick={() => displayHistory()}></div>
+      <div className="hide" onClick={toggle}></div>
     </div>
   )
 };

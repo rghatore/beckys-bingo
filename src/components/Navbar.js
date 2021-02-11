@@ -4,17 +4,14 @@ import Button from './Button';
 
 export function Navbar (props) {
   const [value, setValue] = useState("firstCategory")
-  // const [items, setItems] = useState(props.items || []);
-  const { categories, changeCategory, itemsBag, history, displayHistory } = props;
 
-  // console.log('itemsBag: ', itemsBag);
+  const { categories, changeCategory, itemsBag, history, displayHistory } = props;
 
   useEffect(() => {
     changeCategory(value);
   }, [value])
 
   const pickOne = () => {
-    // console.log('itemsBag: ', itemsBag);
     const bag = [...itemsBag];
     props.nextItem(bag);
   }
@@ -26,7 +23,7 @@ export function Navbar (props) {
         <Button 
           disabled={itemsBag.length < 1 ? true : false}
           next
-          onClick={debounce(pickOne, 1000)}
+          onClick={debounce(pickOne, 800)}
         >Next item</Button>
       </div>
       <div className="categories">

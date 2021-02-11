@@ -8,11 +8,9 @@
   flex-direction: column;
  
   .hide {
-    // background-color: transparent;
-    // opacity: 0;
-    // background-color: rgba(0, 0, 0, 0.25);
     flex: 2;
   }
+
   .history_content {
     background-color: #3F88C5;
     display: flex;
@@ -34,8 +32,6 @@
       text-align: center;
       font-size: larger;
       flex: 2;
-      // padding-left: 200px;
-
     }
 
     .history_column {
@@ -49,16 +45,15 @@
     }
 
     li {
-      // width: 20%;
       padding-bottom: 5px;
       color: white;
-      text-shadow: -1px 1px 1px black;
+      text-shadow: -2px 1px 1px black;
       text-align: left;
+      font-weight: bold;
     }
   }
 
   &.open {
-    // justify-content: space-between;
     
     animation: slideIn ease 1800ms;
     -webkit-animation: slideIn ease 1800ms;
@@ -94,7 +89,6 @@
   } 
 
   &.close {
-
     margin-top: -100vh;
 
     animation: slideOut ease 1800ms;

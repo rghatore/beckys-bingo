@@ -48,10 +48,8 @@ function App() {
           items[2].push(item[categories[2]]);
         })
         // update state
-        console.log('items: ', items);
         const bag = [...items[0]];
         shuffle(bag);
-        console.log('bag: ', bag);
 
         setState(prev => ({
           ...prev,
@@ -64,28 +62,6 @@ function App() {
       }
     });
   }, []);
-
-  /*
-  useEffect(() => {
-    if (state.current === 'firstCategory') {
-      state.items.length > 0 && shuffle(state.items[1]);
-      state.items.length > 0 && shuffle(state.items[2]);
-
-    } else if (state.current === 'secondCategory') {
-      state.items.length > 0 && shuffle(state.items[0]);
-      state.items.length > 0 && shuffle(state.items[2]);
-    } else if (state.current === 'thirdCategory') {
-      state.items.length > 0 && shuffle(state.items[0]);
-      state.items.length > 0 && shuffle(state.items[1]);
-    }
-    setState(prev => ({
-      ...prev,
-      count: maxNumber(),
-      message: "All the best! Have fun!"
-    }));
-    clearSelected();
-  }, [state.current])
-  */
 
   const changeCategory = (category) => {
     let bag = [];
@@ -105,9 +81,6 @@ function App() {
     category === 'secondCategory' && state.items[1] && (bag = [...state.items[1]]);
     category === 'thirdCategory' && state.items[2] && (bag = [...state.items[2]]);
 
-    console.log('current is: ', category);
-    console.log('bag is: ', bag);
-
     setState(prev => ({
       ...prev,
       count: maxNumber(),
@@ -117,7 +90,6 @@ function App() {
       history: []
     }));
     clearSelected();
-    // setState(prev => ({...prev, current: category}));
   };
 
   const updateCount = () => {
@@ -140,13 +112,10 @@ function App() {
 
   const nextItem = (currentBag) => {
     if (currentBag.length > 0) {
-    // currentBag.length > 0 && shuffle(currentBag);
     shuffle(currentBag);
     const grab = currentBag.pop();
-    // console.log('grab: ', grab);
     const history = [...state.history];
     history.push(grab);
-    // const grab = currentBag
     setState(prev => ({...prev, history, itemsBag: currentBag}));
     }
   }
@@ -165,11 +134,12 @@ function App() {
         bingo={state.bingo}
         reset={reset}
       />
-      <History
-        showHistory={state.showHistory}
+      {
+      state.showHistory && <History
         history={state.history}
         displayHistory={displayHistory}
       />
+      }
       <Header />
       <Navbar
         categories={state.categories}
@@ -178,7 +148,6 @@ function App() {
         nextItem={nextItem}
         history={state.history}
         displayHistory={displayHistory}
-        // current={state.current}
       />
       <main>
         <Grid
