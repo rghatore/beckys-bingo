@@ -137,13 +137,16 @@ function App() {
   }
 
   const nextItem = (currentBag) => {
-    currentBag.length > 0 && shuffle(currentBag);
+    if (currentBag.length > 0) {
+    // currentBag.length > 0 && shuffle(currentBag);
+    shuffle(currentBag);
     const grab = currentBag.pop();
     console.log('grab: ', grab);
     const history = [...state.history];
     history.push(grab);
     // const grab = currentBag
     setState(prev => ({...prev, history, itemsBag: currentBag}));
+    }
   }
 
 

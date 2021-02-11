@@ -35,6 +35,12 @@
       flex-direction: column;
       align-items: center;
       margin-bottom: 1em;
+      width: 34%;
+
+      /* Screen above 768px - Tablet & Desktops */
+      @media only screen and (min-width: 768px) {
+        width: 20%;
+      }
 
       label {
         margin: 0.5em 0;
@@ -44,6 +50,15 @@
         font-size: medium;
         padding: 2px;
         border-radius: 2px;
+      }
+    }
+
+    .current_item, .previous_items {
+      width: 33%;
+
+      /* Screen above 768px - Tablet & Desktops */
+      @media only screen and (min-width: 768px) {
+        width: 40%;
       }
     }
 

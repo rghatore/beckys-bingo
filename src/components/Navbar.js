@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import debounce from "lodash/debounce";
 import Button from './Button';
 
 export function Navbar (props) {
@@ -20,9 +21,13 @@ export function Navbar (props) {
 
   return (
     <nav className="nav_bar">
-      <div>
+      <div className="current_item">
         <p>Current: <b>{history.length > 0 && history[history.length - 1]}</b></p>
-        <Button next onClick={() => pickOne()}>Next item</Button>
+        <Button 
+          disabled={itemsBag.length < 1 ? true : false}
+          next
+          onClick={debounce(pickOne, 1000)}
+        >Next item</Button>
       </div>
       <div className="categories">
         <label for="bingo-category">Select a category:</label>
@@ -37,7 +42,7 @@ export function Navbar (props) {
           <option value="thirdCategory">{categories && categories[2]}</option>
         </select>
       </div>
-      <div>
+      <div className="previous_items">
         <p>Previous items</p>
         <Button history>History</Button>
       </div>

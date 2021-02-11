@@ -14,6 +14,14 @@
     box-shadow: -2px 2px 0 black;
     color: white;
   }
+
+  &.button_disabled {
+    background-color: gray;
+    box-shadow: none;
+    border: 1px solid black;
+    color: black;
+    opacity: 0.5;
+  }
 }
 
 .button:focus {
