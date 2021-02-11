@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import './History.scss';
 
 export default function History(props) {
@@ -20,36 +19,41 @@ export default function History(props) {
           history.length === 0 && 
           <p className="history_empty">Uh oh, history is empty!</p>
         }
-        <ol className="history_column">
-          {columns[0].map(item => (
-              <li>{item}</li>
-            ))
-          }
-        </ol>
-        <ol className="history_column" start="6">
-          {columns[1].map(item => (
-              <li>{item}</li>
-            ))
-          }
-        </ol>
-        <ol className="history_column" start="11">
-          {columns[2].map(item => (
-              <li>{item}</li>
-            ))
-          }
-        </ol>
-        <ol className="history_column" start="16">
-          {columns[3].map(item => (
-              <li>{item}</li>
-            ))
-          }
-        </ol>
-        <ol className="history_column" start="21">
-          {columns[4].map(item => (
-              <li>{item}</li>
-            ))
-          }
-        </ol>
+        {
+          history.length > 0 &&
+          <>
+          <ol className="history_column">
+            {columns[0].map((item, index) => (
+                <li key={index}>{item}</li>
+              ))
+            }
+          </ol>
+          <ol className="history_column" start="6">
+            {columns[1].map((item, index) => (
+                <li key={index}>{item}</li>
+              ))
+            }
+          </ol>
+          <ol className="history_column" start="11">
+            {columns[2].map((item, index) => (
+                <li key={index}>{item}</li>
+              ))
+            }
+          </ol>
+          <ol className="history_column" start="16">
+            {columns[3].map((item, index) => (
+                <li key={index}>{item}</li>
+              ))
+            }
+          </ol>
+          <ol className="history_column" start="21">
+            {columns[4].map((item, index) => (
+                <li key={index}>{item}</li>
+              ))
+            }
+          </ol>
+          </>
+        }
       </section>
       <div className="hide" onClick={() => displayHistory()}></div>
     </div>
