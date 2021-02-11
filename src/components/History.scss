@@ -1,0 +1,119 @@
+.history_slide {
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.25);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+ 
+  .hide {
+    // background-color: transparent;
+    // opacity: 0;
+    // background-color: rgba(0, 0, 0, 0.25);
+    flex: 2;
+  }
+  .history_content {
+    background-color: #3F88C5;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 1em;
+    border-radius: 0 0 1em 1em;
+    border: 10px double white;
+    border-top: 5px solid white;
+    .history_empty {
+      color: white;
+      text-shadow: -1px 1px 1px black;
+      text-align: center;
+      font-size: larger;
+      flex: 2;
+      padding-left: 200px;
+    }
+    .history_column {
+      margin-block-start: 0.8em;
+      margin-block-end: 0.5em;
+    // padding-inline-start: 0;
+    }
+    li {
+      // width: 20%;
+      padding-bottom: 5px;
+      color: white;
+      text-shadow: -1px 1px 1px black;
+      text-align: left;
+    }
+  }
+
+  &.open {
+    // justify-content: space-between;
+    
+    animation: slideIn ease 1800ms;
+    -webkit-animation: slideIn ease 1800ms;
+    -moz-animation: slideIn ease 1800ms;
+    -o-animation: slideIn ease 1800ms;
+    -ms-animation: slideIn ease 1800ms;
+
+    // slide in animation
+    @keyframes slideIn {
+      0% {margin-top: -100vh;}
+      100% {margin-top: 0px;}
+    }
+
+    @-moz-keyframes slideIn {
+      0% {margin-top: -100vh;}
+      100% {margin-top: 0px;}
+    }
+
+    @-webkit-keyframes slideIn {
+      0% {margin-top: -100vh;}
+      100% {margin-top: 0px;}
+    }
+
+    @-o-keyframes slideIn {
+      0% {margin-top: -100vh;}
+      100% {margin-top: 0px;}
+    }
+
+    @-ms-keyframes slideIn {
+      0% {margin-top: -100vh;}
+      100% {margin-top: 0px;}
+    }
+  } 
+
+  &.close {
+
+    margin-top: -100vh;
+
+    animation: slideOut ease 1800ms;
+    -webkit-animation: slideOut ease 1800ms;
+    -moz-animation: slideOut ease 1800ms;
+    -o-animation: slideOut ease 1800ms;
+    -ms-animation: slideOut ease 1800ms;
+
+    // slide in animation
+    @keyframes slideOut {
+      0% {margin-top: 0px;}
+      100% {margin-top: -100vh;}
+    }
+
+    @-moz-keyframes slideOut {
+      0% {margin-top: 0px;}
+      100% {margin-top: -100vh;}
+    }
+
+    @-webkit-keyframes slideOut {
+      0% {margin-top: 0px;}
+      100% {margin-top: -100vh;}
+    }
+
+    @-o-keyframes slideOut {
+      0% {margin-top: 0px;}
+      100% {margin-top: -100vh;}
+    }
+
+    @-ms-keyframes slideOut {
+      0% {margin-top: 0px;}
+      100% {margin-top: -100vh;}
+    }
+    
+  }
+}

@@ -5,6 +5,7 @@ import { Navbar } from './components/Navbar';
 import Message from './components/Message';
 import Bingo from './components/Bingo';
 import Status from './components/Status';
+import History from './components/History';
 import Papa from 'papaparse';
 import { useEffect, useState } from 'react';
 import { shuffle, clearSelected, maxNumber } from './helpers/selectors';
@@ -21,7 +22,8 @@ function App() {
     loading: true,
     message: "",
     itemsBag: [],
-    history: []
+    history: [],
+    showHistory: false
   });
   
   const sheetUrl = 'https://docs.google.com/spreadsheets/d/1_Vm4nx1KFpSAta-3gc5RhsyP8rrdg3YhAXNA5tTHyg4/pub?output=csv';
@@ -141,7 +143,7 @@ function App() {
     // currentBag.length > 0 && shuffle(currentBag);
     shuffle(currentBag);
     const grab = currentBag.pop();
-    console.log('grab: ', grab);
+    // console.log('grab: ', grab);
     const history = [...state.history];
     history.push(grab);
     // const grab = currentBag
@@ -149,6 +151,10 @@ function App() {
     }
   }
 
+  const displayHistory = () => {
+    !state.showHistory && setState(prev => ({...prev, showHistory: true}));
+    state.showHistory && setState(prev => ({...prev, showHistory: false}));
+  }
 
   return (
     <div className="App">
@@ -159,6 +165,11 @@ function App() {
         bingo={state.bingo}
         reset={reset}
       />
+      <History
+        showHistory={state.showHistory}
+        history={state.history}
+        displayHistory={displayHistory}
+      />
       <Header />
       <Navbar
         categories={state.categories}
@@ -166,6 +177,7 @@ function App() {
         itemsBag={state.itemsBag}
         nextItem={nextItem}
         history={state.history}
+        displayHistory={displayHistory}
         // current={state.current}
       />
       <main>

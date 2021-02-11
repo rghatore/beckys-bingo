@@ -5,7 +5,7 @@ import Button from './Button';
 export function Navbar (props) {
   const [value, setValue] = useState("firstCategory")
   // const [items, setItems] = useState(props.items || []);
-  const { categories, changeCategory, itemsBag, history } = props;
+  const { categories, changeCategory, itemsBag, history, displayHistory } = props;
 
   // console.log('itemsBag: ', itemsBag);
 
@@ -14,7 +14,7 @@ export function Navbar (props) {
   }, [value])
 
   const pickOne = () => {
-    console.log('itemsBag: ', itemsBag);
+    // console.log('itemsBag: ', itemsBag);
     const bag = [...itemsBag];
     props.nextItem(bag);
   }
@@ -44,7 +44,7 @@ export function Navbar (props) {
       </div>
       <div className="previous_items">
         <p>Previous items</p>
-        <Button history>History</Button>
+        <Button history onClick={() => displayHistory()}>History</Button>
       </div>
     </nav>
   )
