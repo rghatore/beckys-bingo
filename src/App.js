@@ -43,9 +43,9 @@ function App() {
         // loop and update items in state
         const items = [[], [], []];
         data.forEach((item) => {
-          items[0].push(item[categories[0]]);
-          items[1].push(item[categories[1]]);
-          items[2].push(item[categories[2]]);
+          item[categories[0]] && items[0].push(item[categories[0]]);
+          item[categories[1]] && items[1].push(item[categories[1]]);
+          item[categories[2]] && items[2].push(item[categories[2]]);
         })
         // update state
         const bag = [...items[0]];
